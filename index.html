@@ -1,1 +1,134 @@
-<h1 style="color:red">SI VES ESTO, EL DEPLOY FUNCIONA</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💙 Sorpresa</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ffd1e8,#d6f0ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    text-align:center;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.15);
+    width:90%;
+    max-width:500px;
+    animation:fade 1s ease;
+}
+
+@keyframes fade{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    color:#ff4f8b;
+}
+
+#countdown{
+    font-size:30px;
+    margin:20px 0;
+    font-weight:bold;
+}
+
+button{
+    background:linear-gradient(45deg,#ff4f8b,#ff7aa5);
+    border:none;
+    color:white;
+    padding:15px 25px;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+.ticket{
+    display:none;
+    margin-top:20px;
+    padding:20px;
+    border:2px dashed #ff4f8b;
+    border-radius:20px;
+    background:#fff5fa;
+}
+
+.final{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div id="main">
+    <h1>💙 ¡Qué poquito queda para tu gran día!</h1>
+    <div id="countdown"></div>
+
+    <button onclick="showGift()">🎁 Descubre una parte de tu regalo</button>
+
+    <div class="ticket" id="gift">
+        <h2>🎟️ Tu regalo</h2>
+        <p><b>🍣 Una cenita de sushi juntos</b></p>
+        <p>Porque contigo todo sabe mejor ❤️</p>
+    </div>
+</div>
+
+<div class="final" id="final">
+    <h1>🎉 ¡FELIZ CUMPLEAÑOS! 🎉</h1>
+    <p>Hoy es tu gran día 💖</p>
+    <p>Eres una persona muy especial para mí.</p>
+    <h2>❤️ Disfrútalo muchísimo ❤️</h2>
+</div>
+
+</div>
+
+<script>
+
+const target = new Date("July 16, 2026 00:00:00").getTime();
+
+const timer = setInterval(() => {
+
+const now = new Date().getTime();
+const diff = target - now;
+
+if(diff < 0){
+    clearInterval(timer);
+    document.getElementById("main").style.display="none";
+    document.getElementById("final").style.display="block";
+    return;
+}
+
+const d = Math.floor(diff/(1000*60*60*24));
+const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+const m = Math.floor((diff%(1000*60*60))/(1000*60));
+const s = Math.floor((diff%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML =
+`${d} días ${h}h ${m}m ${s}s`;
+
+},1000);
+
+function showGift(){
+    document.getElementById("gift").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
