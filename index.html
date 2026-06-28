@@ -3,27 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💙 Sorpresa</title>
+<title>💙 Para ti</title>
 
 <style>
 body{
     margin:0;
     font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#ffd1e8,#d6f0ff);
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+    background:linear-gradient(-45deg,#ff9ac1,#9ad0ff,#ffd6f3,#bde7ff);
+    background-size:400% 400%;
+    animation: bg 10s ease infinite;
     text-align:center;
 }
 
+@keyframes bg{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
 .card{
-    background:white;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
     padding:40px;
     border-radius:25px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.15);
     width:90%;
-    max-width:500px;
+    max-width:520px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.2);
     animation:fade 1s ease;
 }
 
@@ -33,37 +42,47 @@ body{
 }
 
 h1{
-    color:#ff4f8b;
+    color:#ff3f88;
+    margin-bottom:10px;
 }
 
 #countdown{
-    font-size:30px;
-    margin:20px 0;
+    font-size:32px;
     font-weight:bold;
+    margin:25px 0;
+    color:#222;
+}
+
+.sub{
+    opacity:0.7;
+    margin-bottom:20px;
 }
 
 button{
-    background:linear-gradient(45deg,#ff4f8b,#ff7aa5);
+    background:linear-gradient(45deg,#ff3f88,#ff79b0);
     border:none;
-    color:white;
     padding:15px 25px;
-    border-radius:30px;
+    border-radius:50px;
+    color:white;
     font-size:16px;
     cursor:pointer;
-    margin-top:10px;
+    box-shadow:0 10px 20px rgba(255,63,136,0.3);
+    transition:0.3s;
 }
 
 button:hover{
     transform:scale(1.05);
+    box-shadow:0 15px 25px rgba(255,63,136,0.4);
 }
 
 .ticket{
     display:none;
-    margin-top:20px;
+    margin-top:25px;
     padding:20px;
-    border:2px dashed #ff4f8b;
     border-radius:20px;
+    border:2px dashed #ff3f88;
     background:#fff5fa;
+    animation:fade 0.6s ease;
 }
 
 .final{
@@ -78,22 +97,24 @@ button:hover{
 
 <div id="main">
     <h1>💙 ¡Qué poquito queda para tu gran día!</h1>
+    <div class="sub">Cuenta atrás hacia algo especial ✨</div>
+
     <div id="countdown"></div>
 
-    <button onclick="showGift()">🎁 Descubre una parte de tu regalo</button>
+    <button onclick="showGift()">🎁 Descubrir regalo</button>
 
     <div class="ticket" id="gift">
-        <h2>🎟️ Tu regalo</h2>
-        <p><b>🍣 Una cenita de sushi juntos</b></p>
-        <p>Porque contigo todo sabe mejor ❤️</p>
+        <h2>🎟️ Tu primer regalo</h2>
+        <h2>🍣 Cena de sushi juntos</h2>
+        <p>Porque contigo cualquier plan sabe mejor 💖</p>
     </div>
 </div>
 
 <div class="final" id="final">
     <h1>🎉 ¡FELIZ CUMPLEAÑOS! 🎉</h1>
-    <p>Hoy es tu gran día 💖</p>
-    <p>Eres una persona muy especial para mí.</p>
-    <h2>❤️ Disfrútalo muchísimo ❤️</h2>
+    <p>Hoy es un día muy especial 💖</p>
+    <p>Ojalá disfrutes cada segundo como te mereces</p>
+    <h2>❤️ Te quiero muchísimo ❤️</h2>
 </div>
 
 </div>
@@ -102,13 +123,13 @@ button:hover{
 
 const target = new Date("July 16, 2026 00:00:00").getTime();
 
-const timer = setInterval(() => {
+const x = setInterval(() => {
 
 const now = new Date().getTime();
 const diff = target - now;
 
 if(diff < 0){
-    clearInterval(timer);
+    clearInterval(x);
     document.getElementById("main").style.display="none";
     document.getElementById("final").style.display="block";
     return;
@@ -120,7 +141,7 @@ const m = Math.floor((diff%(1000*60*60))/(1000*60));
 const s = Math.floor((diff%(1000*60))/1000);
 
 document.getElementById("countdown").innerHTML =
-`${d} días ${h}h ${m}m ${s}s`;
+`${d}d : ${h}h : ${m}m : ${s}s`;
 
 },1000);
 
