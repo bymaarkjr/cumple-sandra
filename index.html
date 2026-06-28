@@ -3,39 +3,123 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💙 Para ti</title>
+<title>💙 Sorpresa</title>
 
 <style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: radial-gradient(circle at top,#ffd1e8,#cfe9ff,#ffffff);
+    text-align:center;
+}
+
+/* CARD PRINCIPAL */
+.card{
+    background:rgba(255,255,255,0.75);
+    backdrop-filter: blur(12px);
+    padding:40px;
+    border-radius:28px;
+    width:92%;
+    max-width:520px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.2);
+    animation:pop 0.8s ease;
+}
+
+@keyframes pop{
+    from{opacity:0; transform:scale(0.95);}
+    to{opacity:1; transform:scale(1);}
+}
+
+h1{
+    color:#ff3f88;
+    margin-bottom:10px;
+}
+
+#countdown{
+    font-size:34px;
+    font-weight:bold;
+    margin:20px 0;
+    color:#222;
+}
+
+/* BOTÓN PRO */
+button{
+    background:linear-gradient(45deg,#ff3f88,#ff78b2);
+    border:none;
+    padding:14px 26px;
+    border-radius:999px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(255,63,136,0.35);
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+    box-shadow:0 15px 35px rgba(255,63,136,0.5);
+}
+
+/* TICKET PRO */
 .ticket{
     display:none;
     margin-top:25px;
+    animation:fadeUp 0.6s ease;
 }
 
-.ticket-card{
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.ticket-box{
     display:flex;
-    background:linear-gradient(135deg,#ffffff,#ffeef6);
-    border-radius:18px;
+    background:linear-gradient(135deg,#ffffff,#ffeaf3);
+    border-radius:20px;
     overflow:hidden;
-    box-shadow:0 15px 40px rgba(0,0,0,0.2);
     position:relative;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
 }
 
-.ticket-left{
-    padding:20px;
+/* efecto papel */
+.ticket-box::before{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:70%;
+    width:0;
+    border-left:3px dashed rgba(255,63,136,0.4);
+}
+
+/* perforaciones */
+.ticket-box::after{
+    content:"";
+    position:absolute;
+    left:70%;
+    top:-10px;
+    width:20px;
+    height:20px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 90px 0 white;
+}
+
+/* lado izquierdo */
+.left{
     flex:1;
+    padding:20px;
     text-align:left;
 }
 
-.title{
-    font-size:14px;
-    opacity:0.7;
-    letter-spacing:2px;
-}
-
-.subtitle{
+.small{
     font-size:12px;
     opacity:0.5;
-    margin-bottom:10px;
+    letter-spacing:2px;
 }
 
 .big{
@@ -45,124 +129,31 @@
     margin:10px 0;
 }
 
-.text{
+.desc{
     font-size:14px;
     opacity:0.8;
     line-height:1.4;
 }
 
-.ticket-right{
-    width:80px;
-    background:#ff3f88;
+/* lado derecho */
+.right{
+    width:90px;
+    background:linear-gradient(135deg,#ff3f88,#ff78b2);
     color:white;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    position:relative;
 }
 
 .date{
     font-size:14px;
     font-weight:bold;
     transform:rotate(-90deg);
+    white-space:nowrap;
 }
 
-.code{
-    font-size:10px;
-    opacity:0.8;
-    margin-top:10px;
-}
-
-.cut{
-    position:absolute;
-    left:-10px;
-    top:50%;
-    width:20px;
-    height:20px;
-    background:white;
-    border-radius:50%;
-    transform:translateY(-50%);
-}
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(-45deg,#ff9ac1,#9ad0ff,#ffd6f3,#bde7ff);
-    background-size:400% 400%;
-    animation: bg 10s ease infinite;
-    text-align:center;
-}
-
-@keyframes bg{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-.card{
-    background:rgba(255,255,255,0.85);
-    backdrop-filter: blur(10px);
-    padding:40px;
-    border-radius:25px;
-    width:90%;
-    max-width:520px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.2);
-    animation:fade 1s ease;
-}
-
-@keyframes fade{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-h1{
-    color:#ff3f88;
-    margin-bottom:10px;
-}
-
-#countdown{
-    font-size:32px;
-    font-weight:bold;
-    margin:25px 0;
-    color:#222;
-}
-
-.sub{
-    opacity:0.7;
-    margin-bottom:20px;
-}
-
-button{
-    background:linear-gradient(45deg,#ff3f88,#ff79b0);
-    border:none;
-    padding:15px 25px;
-    border-radius:50px;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-    box-shadow:0 10px 20px rgba(255,63,136,0.3);
-    transition:0.3s;
-}
-
-button:hover{
-    transform:scale(1.05);
-    box-shadow:0 15px 25px rgba(255,63,136,0.4);
-}
-
-.ticket{
-    display:none;
-    margin-top:25px;
-    padding:20px;
-    border-radius:20px;
-    border:2px dashed #ff3f88;
-    background:#fff5fa;
-    animation:fade 0.6s ease;
-}
-
+/* FINAL */
 .final{
     display:none;
 }
@@ -175,40 +166,36 @@ button:hover{
 
 <div id="main">
     <h1>💙 ¡Qué poquito queda para tu gran día!</h1>
-    <div class="sub">Cuenta atrás hacia algo especial ✨</div>
-
     <div id="countdown"></div>
 
     <button onclick="showGift()">🎁 Descubrir regalo</button>
 
     <div class="ticket" id="gift">
-    <div class="ticket-card">
+        <div class="ticket-box">
 
-        <div class="ticket-left">
-            <div class="title">🎟️ VALE PRIMER REGALO</div>
-            <div class="subtitle">EXPERIENCIA ESPECIAL</div>
-
-            <div class="big">🍣 Sushi juntos</div>
-
-            <div class="text">
-                Este vale incluye una cena especial contigo.<br>
-                Porque los mejores momentos son contigo ❤️
+            <div class="left">
+                <div class="small">VALE EXCLUSIVO</div>
+                <div class="big">🍣 Sushi juntos</div>
+                <div class="desc">
+                    Este vale te da una cena especial conmigo.<br>
+                    Porque contigo todo es mejor ❤️
+                </div>
             </div>
-        </div>
 
-        <div class="ticket-right">
-            <div class="cut"></div>
-            <div class="date">16 JUL</div>
-            <div class="code">#SORPRESA</div>
-        </div>
+            <div class="right">
+                <div class="date">16 JUL</div>
+            </div>
 
+        </div>
     </div>
+
 </div>
+
 <div class="final" id="final">
     <h1>🎉 ¡FELIZ CUMPLEAÑOS! 🎉</h1>
-    <p>Hoy es un día muy especial 💖</p>
-    <p>Ojalá disfrutes cada segundo como te mereces</p>
-    <h2>❤️ Te quiero muchísimo ❤️</h2>
+    <p>Hoy es tu día 💖</p>
+    <p>Eres alguien muy importante para mí</p>
+    <h2>❤️ Disfrútalo muchísimo ❤️</h2>
 </div>
 
 </div>
@@ -217,13 +204,13 @@ button:hover{
 
 const target = new Date("July 16, 2026 00:00:00").getTime();
 
-const x = setInterval(() => {
+const timer = setInterval(()=>{
 
 const now = new Date().getTime();
 const diff = target - now;
 
 if(diff < 0){
-    clearInterval(x);
+    clearInterval(timer);
     document.getElementById("main").style.display="none";
     document.getElementById("final").style.display="block";
     return;
@@ -235,7 +222,7 @@ const m = Math.floor((diff%(1000*60*60))/(1000*60));
 const s = Math.floor((diff%(1000*60))/1000);
 
 document.getElementById("countdown").innerHTML =
-`${d}d : ${h}h : ${m}m : ${s}s`;
+`${d}d ${h}h ${m}m ${s}s`;
 
 },1000);
 
